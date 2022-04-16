@@ -5,14 +5,17 @@ export type Product = {
   "parent_url": string;
   "price": string;
   "product_confidence": string;
-  "crawled_time": Date;
-  "created_time": Date;
+
   "domain": string;
   "source": string;
   "brand": string;
   "slug": string;
+
+  "crawled_time": Date;
+  "created_time": Date;
   "price_updated": Date;
   "last_update": Date;
+
   "currency": string;
   "price_old": string;
   "discount": string;
