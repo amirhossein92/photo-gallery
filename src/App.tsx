@@ -1,5 +1,6 @@
 import { Layout } from "antd";
-import PhotoGallery from "./components/PhotoGallery/PhotoGallery";
+import ProductGallery from "./components/Product/ProductGallery";
+
 import "./styles/main.scss";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
       <Layout>
         <Layout.Header>Header</Layout.Header>
         <Layout.Content>
-          <PhotoGallery />
+          <ProductGallery items={[]} />
         </Layout.Content>
         <Layout.Footer>Footer</Layout.Footer>
       </Layout>
