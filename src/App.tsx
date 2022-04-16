@@ -1,8 +1,10 @@
 import { Layout } from "antd";
+
 import ProductGallery from "./components/product/ProductGallery";
 
-import "./styles/main.scss";
 import useFetchProducts from "hooks/query/useFetchProducts";
+
+import "./styles/main.scss";
 
 function App() {
   const { data: products } = useFetchProducts();
