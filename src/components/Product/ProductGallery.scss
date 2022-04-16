@@ -1,2 +1,20 @@
+$gutter: 2rem;
+
 .product-gallery {
+  &__grid {
+    display: flex;
+    margin-left: -$gutter;
+    width: auto;
+  }
+  &__grid-column {
+    padding-left: $gutter;
+    background-clip: padding-box;
+  }
+
+  /* Style your items */
+  &__grid_column > div {
+    background: grey;
+    background: grey;
+    margin-bottom: 30px;
+  }
 }
