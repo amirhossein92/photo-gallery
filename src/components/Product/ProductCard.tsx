@@ -1,4 +1,3 @@
-import { Typography } from "antd";
 import classNames from "classnames";
 
 import Image from "core/display/Image";
@@ -23,15 +22,16 @@ const ProductCard = ({
     <div className={classNames("product-card", className)} {...rest}>
       <Image src={imageUrl} className="product-card__img" />
       <TagList tags={tags} className="product-card__tags" />
-      {name && (
-        <Typography.Title className="product-card__title">
-          {name}
-        </Typography.Title>
-      )}
+      {name && <h5 className="product-card__name">{name}</h5>}
       {description && (
-        <Typography.Text className="product-card__description">
-          {description}
-        </Typography.Text>
+        <p
+          className="product-card__description"
+          dangerouslySetInnerHTML={{
+            __html: description.startsWith("<")
+              ? description
+              : `${description}`,
+          }}
+        />
       )}
     </div>
   );

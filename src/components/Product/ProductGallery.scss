@@ -1,6 +1,8 @@
-$gutter: 2rem;
+$gutter: 1rem;
 
 .product-gallery {
+  padding: calc($gutter/2);
+
   &__grid {
     display: flex;
     margin-left: -$gutter;

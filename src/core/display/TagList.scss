@@ -1,3 +1,28 @@
-.tag{
-   
+.tag-list {
+  padding: 1rem 0 !important;
+
+  [data-arrow="right"],
+  [data-arrow="left"] {
+    position: absolute;
+    top: 1rem;
+    width: 4rem;
+    cursor: pointer;
+  }
+  [data-arrow="left"] {
+    left: 0;
+    background-image: linear-gradient(
+      to right,
+      rgb(255, 255, 255) 25%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  [data-arrow="right"] {
+    right: 0;
+    text-align: right;
+    background-image: linear-gradient(
+      to left,
+      rgb(255, 255, 255) 25%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
 }

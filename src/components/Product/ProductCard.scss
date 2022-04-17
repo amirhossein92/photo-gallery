@@ -1,2 +1,25 @@
+@import "~styles/helper.scss";
+
 .product-card {
+  &__img {
+  }
+  &__name {
+    font-size: 1rem;
+    font-weight: bold;
+    word-wrap: break-word;
+    line-height: 1.25;
+
+    @include line-truncate;
+  }
+  &__description {
+    font-size: 0.75rem;
+    word-wrap: break-word;
+    max-height: 3rem;
+
+    @include line-truncate;
+
+    ul {
+      @include line-truncate;
+    }
+  }
 }
