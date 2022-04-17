@@ -1,15 +1,17 @@
+import { useMemo } from "react";
+
 import classNames from "classnames";
 import { isEmpty } from "lodash";
 import Masonry from "react-masonry-css";
+import InfiniteScroll from "react-infinite-scroller";
 
-import { Product } from "types/product";
+import useFetchProducts from "hooks/query/useFetchProducts";
+
 import ProductCard from "./ProductCard";
 
 import "./ProductGallery.scss";
 
-type Props = React.HTMLAttributes<HTMLDivElement> & {
-  items: Product[] | undefined;
-};
+type Props = React.HTMLAttributes<HTMLDivElement> & {};
 
 const breakpointColumnsObj = {
   default: 6,
@@ -18,18 +20,37 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-const ProductGallery = ({ items, className, ...rest }: Props) => {
+const ProductGallery = ({ className, ...rest }: Props) => {
+  const { data: productPages, hasNextPage, fetchNextPage } = useFetchProducts();
+
+  const products = useMemo(() => {
+    return productPages?.pages.reduce((prev, curr) => prev.concat(curr), []);
+  }, [productPages]);
+
   return (
     <div className={classNames("product-gallery", className)} {...rest}>
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="product-gallery__grid"
-        columnClassName="product-gallery__grid-column"
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={() => fetchNextPage()}
+        hasMore={hasNextPage}
+        loader={
+          <div className="loader" key={0}>
+            Loading ...
+          </div>
+        }
       >
-        {items &&
-          !isEmpty(items) &&
-          items.map((item, index) => <ProductCard key={index} {...item} />)}
-      </Masonry>
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="product-gallery__grid"
+          columnClassName="product-gallery__grid-column"
+        >
+          {products &&
+            !isEmpty(products) &&
+            products.map((item, index) => (
+              <ProductCard key={index} {...item} />
+            ))}
+        </Masonry>
+      </InfiniteScroll>
     </div>
   );
 };
