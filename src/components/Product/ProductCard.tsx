@@ -25,8 +25,6 @@ const ProductCard = ({
     currentRef as React.MutableRefObject<HTMLElement>
   );
 
-  console.log({ isVisible });
-
   return (
     <div
       className={classNames("product-card", className)}
