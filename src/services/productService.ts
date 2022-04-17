@@ -14,6 +14,7 @@ const productService = {
             imageUrl: product.image_url,
             href: product.url,
             description: product.description,
+            domain: product.domain,
           } as unknown as Product)
       );
     });

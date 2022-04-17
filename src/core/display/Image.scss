@@ -16,8 +16,9 @@
 
     background-color: #333333cc;
     color: #fff;
-    display: none;
     text-decoration: none;
+
+    display: none;
 
     &--visible {
       display: flex;
@@ -27,10 +28,18 @@
       font-size: 1.125rem;
       font-weight: bold;
     }
-    &-source {
+    &-domain {
       position: absolute;
       left: 0.5rem;
       bottom: 0.5rem;
+      font-weight: bold;
+    }
+  }
+
+  a {
+    &:active,
+    &:hover {
+      color: #fff;
     }
   }
 }

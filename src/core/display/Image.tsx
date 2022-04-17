@@ -1,16 +1,18 @@
+import { useState } from "react";
+
+import { ArrowRightOutlined } from "@ant-design/icons";
 import { Image as AntdImage, ImageProps } from "antd";
 import classNames from "classnames";
-import { useState } from "react";
 
 import "./Image.scss";
 
 type Props = ImageProps & {
   src: string;
-  sourceWebsite?: string;
+  domain?: string;
   href?: string;
 };
 
-const Image = ({ src, sourceWebsite, href, ...rest }: Props) => {
+const Image = ({ src, domain, href, ...rest }: Props) => {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -29,9 +31,12 @@ const Image = ({ src, sourceWebsite, href, ...rest }: Props) => {
         rel="noopener noreferrer"
       >
         <div className="image__hover-helper">Open</div>
-        <div className="image__hover-source">
-          {sourceWebsite ?? "website.com"}
-        </div>
+        {domain && (
+          <div className="image__hover-domain">
+            <ArrowRightOutlined rotate={-45} />
+            {domain}
+          </div>
+        )}
       </a>
     </div>
   );
