@@ -6,6 +6,7 @@ import ProductGallery from "components/product/ProductGallery";
 import ProductSearch from "components/product/ProductSearch";
 
 import "./Topic.scss";
+import { Typography } from "antd";
 
 type Props = {};
 
@@ -20,7 +21,9 @@ const Topic = ({ ...rest }: Props) => {
   return (
     <div className="topic">
       <ProductSearch onChange={setCurrentTopic} tags={topTags} />
-      <h2 className="topic__title">{currentTopic}</h2>
+      <Typography.Title className="topic__title" level={2}>
+        {currentTopic}
+      </Typography.Title>
       <p className="topic__count">{filteredProducts?.length} Pins</p>
       <ProductGallery
         products={filteredProducts}
