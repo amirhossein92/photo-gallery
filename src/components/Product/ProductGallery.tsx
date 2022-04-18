@@ -1,17 +1,21 @@
-import { useMemo } from "react";
-
 import classNames from "classnames";
 import { isEmpty } from "lodash";
 import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroller";
 
-import useFetchProducts from "hooks/query/useFetchProducts";
+import { Product } from "types/product";
 
 import ProductCard from "./ProductCard";
 
 import "./ProductGallery.scss";
 
-type Props = React.HTMLAttributes<HTMLDivElement> & {};
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+  products: Product[] | undefined;
+  onTagSelect: (tag: string) => void;
+  fetchNextPage: (page: number) => void;
+  hasMorePage: boolean | undefined;
+  isLoading: boolean;
+};
 
 const breakpointColumnsObj = {
   default: 6,
@@ -20,19 +24,20 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-const ProductGallery = ({ className, ...rest }: Props) => {
-  const { data: productPages, hasNextPage, fetchNextPage } = useFetchProducts();
-
-  const products = useMemo(() => {
-    return productPages?.pages.reduce((prev, curr) => prev.concat(curr), []);
-  }, [productPages]);
-
+const ProductGallery = ({
+  products,
+  fetchNextPage,
+  hasMorePage,
+  className,
+  onTagSelect,
+  ...rest
+}: Props) => {
   return (
-    <div className={classNames("product-gallery", className)} {...rest}>
+    <div className={classNames("product-gallery", className)}>
       <InfiniteScroll
         pageStart={0}
-        loadMore={() => fetchNextPage()}
-        hasMore={hasNextPage}
+        loadMore={fetchNextPage}
+        hasMore={hasMorePage}
         loader={
           <div className="loader" key={0}>
             Loading ...
@@ -47,7 +52,7 @@ const ProductGallery = ({ className, ...rest }: Props) => {
           {products &&
             !isEmpty(products) &&
             products.map((item, index) => (
-              <ProductCard key={index} {...item} />
+              <ProductCard key={index} {...item} onTagSelect={onTagSelect} />
             ))}
         </Masonry>
       </InfiniteScroll>

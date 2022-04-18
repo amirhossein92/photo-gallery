@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 
-import ProductGallery from "./components/product/ProductGallery";
+import Topic from "pages/Topic";
 
 import "./styles/main.scss";
 
@@ -10,7 +10,7 @@ function App() {
       <Layout>
         <Layout.Header>Header</Layout.Header>
         <Layout.Content>
-          <ProductGallery />
+          <Topic />
         </Layout.Content>
       </Layout>
     </div>

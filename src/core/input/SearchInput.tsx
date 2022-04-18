@@ -1,11 +1,21 @@
-import { InputHTMLAttributes } from "react";
+import { SearchOutlined } from "@ant-design/icons";
+import { Input, InputProps } from "antd";
+import classNames from "classnames";
 
 import "./SearchInput.scss";
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {};
+type Props = InputProps & {};
 
-const SearchInput = (props: Props) => {
-  return <input className="search-input" {...props} />;
+const SearchInput = ({ className, ...rest }: Props) => {
+  return (
+    <Input
+      id="search"
+      prefix={<SearchOutlined />}
+      className={classNames("search-input", className)}
+      {...rest}
+      size="large"
+    />
+  );
 };
 
 export default SearchInput;

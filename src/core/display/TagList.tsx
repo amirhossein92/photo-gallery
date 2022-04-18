@@ -9,7 +9,8 @@ import Tag from "./Tag";
 
 import "./TagList.scss";
 
-type Props = React.HTMLAttributes<HTMLDivElement> & {
+type Props = {
+  className: string;
   tags: string[];
   onSelect?: (tag: string) => void;
 };
@@ -20,7 +21,6 @@ const TagList = ({ className, tags, onSelect, ...rest }: Props) => {
   return (
     <ScrollingCarousel
       className={classNames("tag-list", className)}
-      {...rest}
       leftIcon={<LeftOutlined style={{ fontSize: iconSize.SM }} />}
       rightIcon={<RightOutlined style={{ fontSize: iconSize.SM }} />}
     >

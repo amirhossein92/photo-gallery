@@ -9,7 +9,10 @@ import { Product } from "types/product";
 
 import "./ProductCard.scss";
 
-type Props = React.HTMLAttributes<HTMLDivElement> & Product & {};
+type Props = React.HTMLAttributes<HTMLDivElement> &
+  Product & {
+    onTagSelect: (tag: string) => void;
+  };
 
 const ProductCard = ({
   tags,
@@ -19,6 +22,7 @@ const ProductCard = ({
   href,
   className,
   domain,
+  onTagSelect,
   ...rest
 }: Props) => {
   const currentRef = useRef<HTMLDivElement>(null);
@@ -35,7 +39,11 @@ const ProductCard = ({
       {isVisible && (
         <>
           <Image src={imageUrl} className="product-card__img" domain={domain} />
-          <TagList tags={tags} className="product-card__tags" />
+          <TagList
+            tags={tags}
+            className="product-card__tags"
+            onSelect={onTagSelect}
+          />
           {name && <h5 className="product-card__name">{name}</h5>}
           {description && (
             <p
