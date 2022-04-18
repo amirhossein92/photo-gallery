@@ -15,6 +15,7 @@
     font-size: 0.75rem;
     word-wrap: break-word;
     max-height: 3rem;
+    color: #000;
 
     @include line-truncate;
 

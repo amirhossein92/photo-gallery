@@ -38,22 +38,34 @@ const ProductCard = ({
     >
       {isVisible && (
         <>
-          <Image src={imageUrl} className="product-card__img" domain={domain} />
+          <Image
+            src={imageUrl}
+            className="product-card__img"
+            domain={domain}
+            href={href}
+            alt={name}
+          />
           <TagList
             tags={tags}
             className="product-card__tags"
             onSelect={onTagSelect}
           />
-          {name && <h5 className="product-card__name">{name}</h5>}
+          {name && (
+            <a href={href}>
+              <h5 className="product-card__name">{name}</h5>
+            </a>
+          )}
           {description && (
-            <p
-              className="product-card__description"
-              dangerouslySetInnerHTML={{
-                __html: description.startsWith("<")
-                  ? description
-                  : `${description}`,
-              }}
-            />
+            <a href={href}>
+              <p
+                className="product-card__description"
+                dangerouslySetInnerHTML={{
+                  __html: description.startsWith("<")
+                    ? description
+                    : `${description}`,
+                }}
+              />
+            </a>
           )}
         </>
       )}
