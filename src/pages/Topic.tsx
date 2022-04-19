@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Typography } from "antd";
+import { Col, Row, Typography } from "antd";
 
 import useFetchProducts from "hooks/query/useFetchProducts";
 
@@ -21,17 +21,23 @@ const Topic = ({ ...rest }: Props) => {
 
   return (
     <div className="topic">
-      <div className="topic__header">
-        <Logo />
-        <a className="topic__header-link" href="/">
-          Explore
-        </a>
-        <ProductSearch
-          className="topic__header-search"
-          onChange={setCurrentTopic}
-          tags={topTags}
-        />
-      </div>
+      <Row className="topic__header" gutter={8}>
+        <Col xs={18} md={4} lg={2}>
+          <Logo />
+        </Col>
+        <Col xs={6} md={2} lg={2}>
+          <a className="topic__header-link" href="/">
+            Explore
+          </a>
+        </Col>
+        <Col xs={24} md={18} lg={20}>
+          <ProductSearch
+            className="topic__header-search"
+            onChange={setCurrentTopic}
+            tags={topTags}
+          />
+        </Col>
+      </Row>
       <Typography.Title className="topic__title" level={2}>
         {currentTopic}
       </Typography.Title>

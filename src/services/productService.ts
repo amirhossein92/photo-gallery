@@ -14,8 +14,7 @@ const productService = {
         return products.map(
           (product) =>
             ({
-              ...product,
-              tags: product.tags.split(","),
+              tags: (product?.tags ?? "").split(","),
               imageUrl: product.image_url,
               href: product.url,
               description: product.description,
