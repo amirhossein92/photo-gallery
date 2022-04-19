@@ -12,6 +12,7 @@ const useFetchProducts = ({
 }) => {
   const {
     data: productPages,
+    isLoading,
     isFetching,
     hasNextPage,
     fetchNextPage,
@@ -49,6 +50,7 @@ const useFetchProducts = ({
   }, [products]);
 
   return {
+    isLoading,
     isFetching,
     hasNextPage,
     fetchNextPage,
