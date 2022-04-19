@@ -5,10 +5,18 @@
 
     &-search {
     }
-    &-link {
-      color: #000;
+    &-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+
       font-weight: bold;
       font-size: 1rem;
+
+      * {
+        color: #000;
+      }
     }
   }
   &__title {
