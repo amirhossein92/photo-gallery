@@ -3,6 +3,7 @@ import { useInfiniteQuery } from "react-query";
 import queryKey from "constants/queryKey";
 import productService from "services/productService";
 import { useMemo } from "react";
+import { isEmpty } from "lodash";
 
 const useFetchProducts = ({
   currentTopic = null,
@@ -16,19 +17,22 @@ const useFetchProducts = ({
     fetchNextPage,
   } = useInfiniteQuery(
     queryKey.PRODUCTS(),
-    async () => {
-      const products = await productService.getAll();
-      return products;
+    async ({ pageParam = 1 }) => {
+      const products = await productService.getAll(pageParam);
+      return { products, page: pageParam };
     },
     {
       getNextPageParam: (lastPage) => {
-        return true;
+        if (isEmpty(lastPage.products)) return false;
+        return lastPage.page + 1;
       },
     }
   );
 
   const products = useMemo(() => {
-    return productPages?.pages.reduce((prev, curr) => prev.concat(curr), []);
+    return productPages?.pages
+      .map((q) => q.products)
+      .reduce((prev, curr) => prev.concat(curr), []);
   }, [productPages]);
 
   const filteredProducts = useMemo(() => {

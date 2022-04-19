@@ -2,8 +2,11 @@ import { Product } from "types/product";
 import https from "./https";
 
 const productService = {
-  getAll: (): Promise<Product[]> => {
-    return https.get("/data/mock.json").then((res) => {
+  getAll: (page: number = 1): Promise<Product[]> => {
+    const query = new URLSearchParams();
+    query.append("offset", (page - 1) * 20 + "");
+
+    return https.get(`http://xoosha.com/ws/1/test.php?${query}`).then((res) => {
       const products = res.data as Array<any>;
 
       return products.map(
