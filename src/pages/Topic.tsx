@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Typography } from "antd";
 
 import useFetchProducts from "hooks/query/useFetchProducts";
 
@@ -6,7 +7,7 @@ import ProductGallery from "components/product/ProductGallery";
 import ProductSearch from "components/product/ProductSearch";
 
 import "./Topic.scss";
-import { Typography } from "antd";
+import Logo from "components/logo/Logo";
 
 type Props = {};
 
@@ -20,11 +21,20 @@ const Topic = ({ ...rest }: Props) => {
 
   return (
     <div className="topic">
-      <ProductSearch onChange={setCurrentTopic} tags={topTags} />
+      <div className="topic__header">
+        <Logo />
+        <ProductSearch
+          className="topic__header-search"
+          onChange={setCurrentTopic}
+          tags={topTags}
+        />
+      </div>
       <Typography.Title className="topic__title" level={2}>
         {currentTopic}
       </Typography.Title>
-      <p className="topic__count">{filteredProducts?.length} Pins</p>
+      {currentTopic && (
+        <p className="topic__count">{filteredProducts?.length} Pins</p>
+      )}
       <ProductGallery
         products={filteredProducts}
         onTagSelect={setCurrentTopic}

@@ -1,4 +1,12 @@
 .topic {
+  &__header {
+    display: flex;
+    padding: 1rem;
+
+    &-search {
+      flex: 1;
+    }
+  }
   &__title {
     text-align: center;
     font-weight: 700 !important;

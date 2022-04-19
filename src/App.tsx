@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="App">
       <Layout>
-        <Layout.Header>Header</Layout.Header>
         <Layout.Content>
           <Topic />
         </Layout.Content>
