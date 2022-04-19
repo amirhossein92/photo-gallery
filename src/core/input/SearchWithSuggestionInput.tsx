@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { List, Popover } from "antd";
+import { useMemo, useRef, useState } from "react";
+import { InputRef, List, Popover } from "antd";
 import classNames from "classnames";
 
 import SearchInput from "./SearchInput";
@@ -22,6 +22,8 @@ const SearchWithSuggestionInput = ({
   const [searchValue, setSearchValue] = useState<string>("");
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
+  const inputRef = useRef<InputRef>(null);
+
   const relatedTags = useMemo(() => {
     if (!suggestions) return [];
     return suggestions
@@ -37,14 +39,15 @@ const SearchWithSuggestionInput = ({
 
   return (
     <Popover
-      className={classNames("search-input-with-sugestion", className)}
-      overlayClassName="search-input-with-sugestion__popover"
+      className={classNames("search-input-with-suggestion", className)}
+      overlayClassName="search-input-with-suggestion__popover"
       trigger={"click"}
       visible={isPopoverVisible}
       onVisibleChange={setIsPopoverVisible}
+      overlayInnerStyle={{ width: inputRef.current?.input?.clientWidth }}
       content={
         <List
-          className="search-input-with-sugestion__list"
+          className="search-input-with-suggestion__list"
           dataSource={relatedTags}
           renderItem={(suggestion) => (
             <li onClick={() => onSelect(suggestion)}>{suggestion}</li>
@@ -59,6 +62,7 @@ const SearchWithSuggestionInput = ({
         allowClear
         autoComplete="off"
         spellCheck={false}
+        ref={inputRef}
       />
     </Popover>
   );
