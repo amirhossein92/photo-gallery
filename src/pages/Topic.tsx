@@ -7,6 +7,7 @@ import ProductGallery from "components/Product/ProductGallery";
 import ProductSearch from "components/Product/ProductSearch";
 import Logo from "components/logo/Logo";
 import { GithubShare } from "components/share/GithubShare";
+import Loading from "core/display/Loading";
 
 import "./Topic.scss";
 
@@ -15,7 +16,7 @@ type Props = {};
 const Topic = ({ ...rest }: Props) => {
   const [currentTopic, setCurrentTopic] = useState<string | null>(null);
 
-  const { filteredProducts, hasNextPage, fetchNextPage, isFetching, topTags } =
+  const { filteredProducts, hasNextPage, fetchNextPage, isLoading, topTags } =
     useFetchProducts({
       currentTopic,
     });
@@ -46,12 +47,14 @@ const Topic = ({ ...rest }: Props) => {
       {currentTopic && (
         <p className="topic__count">{filteredProducts?.length} Pins</p>
       )}
+      <Loading isLoading={isLoading} />
+
       <ProductGallery
         products={filteredProducts}
         onTagSelect={setCurrentTopic}
         fetchNextPage={() => fetchNextPage()}
         hasMorePage={hasNextPage}
-        isLoading={isFetching}
+        isLoading={isLoading}
       />
     </div>
   );

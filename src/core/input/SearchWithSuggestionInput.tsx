@@ -37,6 +37,11 @@ const SearchWithSuggestionInput = ({
     setIsPopoverVisible(false);
   };
 
+  const onChangeInput = (value: string) => {
+    if (!value) onSelect("");
+
+    setSearchValue(value);
+  };
   return (
     <Popover
       className={classNames("search-input-with-suggestion", className)}
@@ -45,6 +50,7 @@ const SearchWithSuggestionInput = ({
       visible={isPopoverVisible}
       onVisibleChange={setIsPopoverVisible}
       overlayInnerStyle={{ width: inputRef.current?.input?.clientWidth }}
+      placement="bottom"
       content={
         <List
           className="search-input-with-suggestion__list"
@@ -58,7 +64,7 @@ const SearchWithSuggestionInput = ({
       <SearchInput
         placeholder={placeholder}
         value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={(e) => onChangeInput(e.target.value)}
         allowClear
         autoComplete="off"
         spellCheck={false}

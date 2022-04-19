@@ -40,7 +40,7 @@ const ProductGallery = ({
         hasMore={hasMorePage}
         loader={
           <div className="loader" key={0}>
-            Loading ...
+            ...
           </div>
         }
       >
