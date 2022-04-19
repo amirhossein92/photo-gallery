@@ -6,6 +6,7 @@ import useFetchProducts from "hooks/query/useFetchProducts";
 import ProductGallery from "components/Product/ProductGallery";
 import ProductSearch from "components/Product/ProductSearch";
 import Logo from "components/logo/Logo";
+import { GithubShare } from "components/share/GithubShare";
 
 import "./Topic.scss";
 
@@ -22,13 +23,14 @@ const Topic = ({ ...rest }: Props) => {
   return (
     <div className="topic">
       <Row className="topic__header" gutter={8}>
-        <Col xs={18} md={4} lg={2}>
+        <Col xs={14} md={4} lg={2}>
           <Logo />
         </Col>
-        <Col xs={6} md={2} lg={2}>
-          <a className="topic__header-link" href="/">
-            Explore
-          </a>
+        <Col xs={10} md={2} lg={2}>
+          <div className="topic__header-links">
+            <a href="/">Explore</a>
+            <GithubShare />
+          </div>
         </Col>
         <Col xs={24} md={18} lg={20}>
           <ProductSearch
