@@ -5,9 +5,9 @@ import useFetchProducts from "hooks/query/useFetchProducts";
 
 import ProductGallery from "components/product/ProductGallery";
 import ProductSearch from "components/product/ProductSearch";
+import Logo from "components/logo/Logo";
 
 import "./Topic.scss";
-import Logo from "components/logo/Logo";
 
 type Props = {};
 

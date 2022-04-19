@@ -1,9 +1,9 @@
+import { useMemo } from "react";
+import { isEmpty } from "lodash";
 import { useInfiniteQuery } from "react-query";
 
 import queryKey from "constants/queryKey";
 import productService from "services/productService";
-import { useMemo } from "react";
-import { isEmpty } from "lodash";
 
 const useFetchProducts = ({
   currentTopic = null,

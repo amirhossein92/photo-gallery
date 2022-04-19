@@ -1,4 +1,5 @@
 import classNames from "classnames";
+
 import SearchWithSuggestionInput from "core/input/SearchWithSuggestionInput";
 
 import "./ProductSearch.scss";

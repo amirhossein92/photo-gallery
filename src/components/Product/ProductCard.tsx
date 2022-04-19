@@ -1,10 +1,10 @@
+import { useRef } from "react";
 import classNames from "classnames";
 
 import Image from "core/display/Image";
 import TagList from "core/display/TagList";
-import useIntersectionObserver from "hooks/view/useIntersectionObserver";
-import { useRef } from "react";
 
+import useIntersectionObserver from "hooks/view/useIntersectionObserver";
 import { Product } from "types/product";
 
 import "./ProductCard.scss";
