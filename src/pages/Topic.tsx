@@ -23,6 +23,9 @@ const Topic = ({ ...rest }: Props) => {
     <div className="topic">
       <div className="topic__header">
         <Logo />
+        <a className="topic__header-link" href="/">
+          Explore
+        </a>
         <ProductSearch
           className="topic__header-search"
           onChange={setCurrentTopic}
