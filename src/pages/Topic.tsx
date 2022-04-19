@@ -3,8 +3,8 @@ import { Typography } from "antd";
 
 import useFetchProducts from "hooks/query/useFetchProducts";
 
-import ProductGallery from "components/product/ProductGallery";
-import ProductSearch from "components/product/ProductSearch";
+import ProductGallery from "components/Product/ProductGallery";
+import ProductSearch from "components/Product/ProductSearch";
 import Logo from "components/logo/Logo";
 
 import "./Topic.scss";
