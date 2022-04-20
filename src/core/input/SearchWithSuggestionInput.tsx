@@ -27,7 +27,11 @@ const SearchWithSuggestionInput = ({
   const relatedTags = useMemo(() => {
     if (!suggestions) return [];
     return suggestions
-      .filter((suggestion) => suggestion.includes(searchValue))
+      .filter((suggestion) =>
+        (suggestion ?? "")
+          .toLowerCase()
+          .includes((searchValue ?? "").toLowerCase())
+      )
       .slice(0, 10);
   }, [searchValue, suggestions]);
 
