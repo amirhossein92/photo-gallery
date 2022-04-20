@@ -41,6 +41,7 @@ const SearchWithSuggestionInput = ({
     if (!value) onSelect("");
 
     setSearchValue(value);
+    setIsPopoverVisible(true);
   };
   return (
     <Popover
